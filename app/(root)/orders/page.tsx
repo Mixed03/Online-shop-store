@@ -7,14 +7,14 @@ const Orders = async () => {
   const { userId } = auth();
   const orders = await getOrders(userId as string);
 
-  console.log(orders[0].products);
+  console.log(orders[0]?.products);
 
   return (
     <div className="px-10 py-5 max-sm:px-3">
       <p className="text-heading3-bold my-10">Your Orders</p>
       {!orders ||
         (orders.length === 0 && (
-          <p className="text-body-bold my-5">You have no orders yet.</p>
+          <p>You have no orders yet.</p>
         ))}
 
       <div className="flex flex-col gap-10">
