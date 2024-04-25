@@ -34,6 +34,14 @@ const Navbar = () => {
           Home
         </Link>
         <Link
+          href="/screen"
+          className={`hover:text-red-1 ${
+            pathname === "/screen" && "text-red-1"
+          }`}
+        >
+          Design your style
+        </Link>
+        <Link
           href={user ? "/wishlist" : "/sign-in"}
           className={`hover:text-red-1 ${
             pathname === "/wishlist" && "text-red-1"
@@ -84,6 +92,9 @@ const Navbar = () => {
           <div className="absolute top-12 right-5 flex flex-col gap-4 p-3 rounded-lg border bg-white text-base-bold lg:hidden">
             <Link href="/" className="hover:text-red-1">
               Home
+            </Link>
+            <Link href="/screen" className="hover:text-red-1">
+              Design your style
             </Link>
             <Link
               href={user ? "/wishlist" : "/sign-in"}
