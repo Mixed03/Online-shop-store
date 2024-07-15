@@ -1,5 +1,6 @@
+// app/(root)/orders/page.tsx
+import Footer from "@/components/Footer";
 import { getOrders } from "@/lib/actions/actions";
-
 import { auth } from "@clerk/nextjs";
 import Image from "next/image";
 
@@ -7,29 +8,27 @@ const Orders = async () => {
   const { userId } = auth();
   const orders = await getOrders(userId as string);
 
-  console.log(orders[0].products);
-
   return (
+    <div>
     <div className="px-10 py-5 max-sm:px-3">
       <p className="text-heading3-bold my-10">Your Orders</p>
-      {!orders ||
-        (orders.length === 0 && (
-          <p className="text-body-bold my-5">You have no orders yet.</p>
+      {!orders || (orders.length === 0 && (
+          <p>You have no orders yet.</p>
         ))}
 
       <div className="flex flex-col gap-10">
         {orders?.map((order: OrderType) => (
-          <div className="flex flex-col gap-8 p-4 hover:bg-grey-1">
+          <div key={order._id} className="flex flex-col gap-8 p-4 hover:bg-grey-1 rounded-lg border-2">
             <div className="flex gap-20 max-md:flex-col max-md:gap-3">
               <p className="text-base-bold">Order ID: {order._id}</p>
               <p className="text-base-bold">
-                Total Amount: ${order.totalAmount}
+                Total Amount: ₭{order.totalAmount}
               </p>
             </div>
 
-            <div className="flex flex-col gap-5">
+            <div className="flex flex-col gap-5 ">
               {order.products.map((orderItem: OrderItemType) => (
-                <div className="flex gap-4">
+                <div key={orderItem.product._id} className="flex gap-4">
                   <Image
                     src={orderItem.product.media[0]}
                     alt={orderItem.product.title}
@@ -62,7 +61,7 @@ const Orders = async () => {
                     )}
                     <p className="text-small-medium">
                       Unit price:{" "}
-                      <span className="text-small-bold">{orderItem.product.price}</span>
+                      <span className="text-small-bold">₭{orderItem.product.price}</span>
                     </p>
                     <p className="text-small-medium">
                       Quantity:{" "}
@@ -75,6 +74,8 @@ const Orders = async () => {
           </div>
         ))}
       </div>
+    </div>
+    <Footer />
     </div>
   );
 };

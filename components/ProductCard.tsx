@@ -20,15 +20,15 @@ const ProductCard = ({ product, updateSignedInUser }: ProductCardProps ) => {
         alt="product"
         width={250}
         height={300}
-        className="h-[250px] rounded-lg object-cover"
+        className="h-[250px] border rounded-lg object-cover"
       />
-      <div>
+      <div className="px-3">
         <p className="text-base-bold">{product.title}</p>
         <p className="text-small-medium text-grey-2">{product.category}</p>
       </div>
       <div className="flex justify-between items-center">
-        <p className="text-body-bold">${product.price}</p>
-        <HeartFavorite product={product} updateSignedInUser={updateSignedInUser} />
+        <p className="text-body-bold px-3">₭{product.price}</p>
+        {/* <HeartFavorite product={product} updateSignedInUser={updateSignedInUser} /> */}
       </div>
     </Link>
   );

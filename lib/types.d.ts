@@ -5,20 +5,28 @@ type CollectionType = {
   image: string;
 };
 
+type SizeType = {
+  size: string;
+  stock: number;
+  _id?: string; // Optional fields in case they are included in the response
+  id?: string;
+};
+
 type ProductType = {
   _id: string;
   title: string;
   description: string;
-  media: [string];
+  media: string[];
   category: string;
-  collections: [string];
-  tags: [string];
+  collections: string[];
+  tags: string[];
+  sizes: SizeType[];
+  colors: string[];
   price: number;
-  cost: number;
-  sizes: [string];
-  colors: [string];
-  createdAt: string;
-  updatedAt: string;
+  expense: number;
+  inventory: number;
+  createdAt: Date;
+  updatedAt: Date;
 };
 
 type UserType = {
