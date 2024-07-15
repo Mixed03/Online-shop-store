@@ -1,7 +1,6 @@
 "use client";
 
 import useCart from "@/lib/hooks/useCart";
-
 import { useUser } from "@clerk/nextjs";
 import { MinusCircle, PlusCircle, Trash } from "lucide-react";
 import Image from "next/image";
@@ -18,27 +17,11 @@ const Cart = () => {
   );
   const totalRounded = parseFloat(total.toFixed(2));
 
-  const customer = {
-    clerkId: user?.id,
-    email: user?.emailAddresses[0].emailAddress,
-    name: user?.fullName,
-  };
-
-  const handleCheckout = async () => {
-    try {
-      if (!user) {
-        router.push("sign-in");
-      } else {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/checkout`, {
-          method: "POST",
-          body: JSON.stringify({ cartItems: cart.cartItems, customer }),
-        });
-        const data = await res.json();
-        window.location.href = data.url;
-        console.log(data);
-      }
-    } catch (err) {
-      console.log("[checkout_POST]", err);
+  const handleCheckout = () => {
+    if (!user) {
+      router.push("sign-in");
+    } else {
+      router.push("/checkout");
     }
   };
 
@@ -70,7 +53,7 @@ const Cart = () => {
                     {cartItem.size && (
                       <p className="text-small-medium">{cartItem.size}</p>
                     )}
-                    <p className="text-small-medium">${cartItem.item.price}</p>
+                    <p className="text-small-medium">₭{cartItem.item.price}</p>
                   </div>
                 </div>
 
@@ -105,7 +88,7 @@ const Cart = () => {
         </p>
         <div className="flex justify-between text-body-semibold">
           <span>Total Amount</span>
-          <span>$ {totalRounded}</span>
+          <span>₭{totalRounded}</span>
         </div>
         <button
           className="border rounded-lg text-body-bold bg-white py-3 w-full hover:bg-black hover:text-white"

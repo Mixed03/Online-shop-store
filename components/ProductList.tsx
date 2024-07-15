@@ -12,7 +12,7 @@ const ProductList = async () => {
       ) : (
         <div className="flex flex-wrap justify-center gap-16">
           {products.map((product: ProductType) => (
-            <ProductCard key={product._id} product={product}/>
+            <ProductCard key={product._id} product={product} />
           ))}
         </div>
       )}
