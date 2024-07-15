@@ -87,6 +87,12 @@ const config: Config = {
       ],
     },
     extend: {
+      fontFamily: {
+        urbanist: ['Urbanist', 'sans-serif'],
+      },
+      fontWeight: {
+        black: '900',
+      },
       colors: {
         "red-1": "#FF0000",
         "grey-1": "#F7F7F7",
@@ -94,7 +100,9 @@ const config: Config = {
       },
     },
   },
-  plugins: [require("tailwind-scrollbar-hide")],
+  plugins: [
+    require("tailwind-scrollbar-hide")
+  ],
 };
-export default config;
 
+export default config;

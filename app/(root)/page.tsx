@@ -1,4 +1,5 @@
 import Collections from "@/components/Collections";
+import Footer from "@/components/Footer";
 import ProductList from "@/components/ProductList";
 
 import Image from "next/image";
@@ -6,9 +7,10 @@ import Image from "next/image";
 export default function Home() {
   return (
     <>
-      <Image src="/billboard-001.jpg" alt="banner" width={2000} height={1000} className="w-screen" />
+      <Image src="/219.jpg" alt="banner" width={2000} height={1000} className="w-screen" />
       <Collections />
       <ProductList />
+      <Footer />
     </>
   );
 }
