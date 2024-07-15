@@ -32,3 +32,26 @@ export const getRelatedProducts = async (productId: string) => {
   const relatedProducts = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/products/${productId}/related`)
   return await relatedProducts.json()
 }
+
+export const updateProductInventory = async (productId: string, quantity: number, size: string) => {
+  try {
+    const res = await fetch(`/api/products/${productId}/inventory`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ quantity, size }),
+    });
+
+    if (!res.ok) {
+      throw new Error("Failed to update product inventory");
+    }
+
+    const data = await res.json();
+    return data;
+  } catch (err) {
+    console.error("Error updating product inventory:", err);
+  }
+};
+
+
